@@ -1,0 +1,27 @@
+body {
+    min-height: 100vh;
+}
+
+main {
+    width: 70%;
+    height: 100%;
+}
+
+#youtubelink {
+    background-color: #7c7c7c;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#viewer {
+    display: none;
+    min-width: 50vw;
+}
+
+.notification {
+    position: absolute !important;
+    top: 10px;
+    transition: opacity 0.5s;
+}
