@@ -1,2 +1,10 @@
 # video-sync
-syncing app 
+
+## Requirements
+nodejs
+
+## Set Up
+### Installing packages
+`npm install`
+### Running server
+`node app.js`
