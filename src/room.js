@@ -1,7 +1,7 @@
 import { socket } from "./sockets.js"
 
 const joinBtn = document.getElementById("joinRoom")
-const roomIdInput = document.getElementById("roomIdInput")
+const roomIdInput = document.getElementById("roomSelect")
 const roomDiv = document.getElementById("join")
 const viewerDiv = document.getElementById("viewer")
 const nameInput = document.getElementById("name")

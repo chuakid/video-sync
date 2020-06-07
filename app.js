@@ -10,16 +10,28 @@ if (port == null || port == "") {
     port = 3000;
 }
 
+let rooms = [1,2,3,4], roomlinks = {}
+
 io.on('connection', (client) => {
-    client.on("join", (info) => {       
+    client.emit("rooms", rooms)
+    client.on("join", (info) => {
+        if(!rooms.includes(parseInt(info.roomId)))
+            return
+        
         client.join(info.roomId)
         client.roomId = info.roomId
         console.log(client.id + " joined " + client.roomId)
         client.emit("roomJoinStatus")
+        if (!rooms[client.roomId]) {
+            rooms[client.roomId] = {}
+        }
+        else if (rooms[client.roomId]['link']){
+            client.emit("linkChanged", rooms[client.roomId]["link"])
+        }
         client.broadcast.to(client.roomId).emit("clientJoined", info.name)
     })
     client.on("linkChange", (id) => {
-        console.log("Link changed to " + id);
+        rooms[client.roomId]["link"] = id
         client.broadcast.to(client.roomId).emit("linkChanged", id)
     })
     client.on("seek", (seekTime) => {

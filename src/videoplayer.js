@@ -89,3 +89,14 @@ socket.on("clientJoined", (name) => {
     }, 1000)
 })
 
+
+socket.on("rooms", (rooms)=>{
+    let roomSelect = document.getElementById("roomSelect")
+   
+    for(let room of rooms){
+        let option = document.createElement("option")
+        option.value = room
+        option.textContent = room
+        roomSelect.appendChild(option)
+    }
+})
