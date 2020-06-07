@@ -22,16 +22,16 @@ io.on('connection', (client) => {
         client.roomId = info.roomId
         console.log(client.id + " joined " + client.roomId)
         client.emit("roomJoinStatus")
-        if (!rooms[client.roomId]) {
-            rooms[client.roomId] = {}
+        if (!roomlinks[client.roomId]) {
+            roomlinks[client.roomId] = {}
         }
-        else if (rooms[client.roomId]['link']){
-            client.emit("linkChanged", rooms[client.roomId]["link"])
+        else if (roomlinks[client.roomId]['link']){
+            client.emit("linkChanged", roomlinks[client.roomId]["link"])
         }
         client.broadcast.to(client.roomId).emit("clientJoined", info.name)
     })
     client.on("linkChange", (id) => {
-        rooms[client.roomId]["link"] = id
+        roomlinks[client.roomId]["link"] = id
         client.broadcast.to(client.roomId).emit("linkChanged", id)
     })
     client.on("seek", (seekTime) => {
