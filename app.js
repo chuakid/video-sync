@@ -10,9 +10,8 @@ if (port == null || port == "") {
     port = 3000;
 }
 
-let rooms = [1, 2, 3, 4], roomInfo = {
-
-}
+let rooms = [1, 2, 3, 4],
+    roomInfo = {}
 
 for (let room of rooms) {
     roomInfo[room] = {}
@@ -24,8 +23,10 @@ io.on('connection', (client) => {
         if (!rooms.includes(parseInt(info.roomId)))
             return
 
-        client.join(info.roomId)
+        client.name = info.name
         client.roomId = info.roomId
+
+        client.join(info.roomId)
         console.log(client.id + " joined " + client.roomId)
         client.emit("roomJoinStatus")
 
@@ -47,7 +48,7 @@ io.on('connection', (client) => {
         client.broadcast.to(client.roomId).emit("pause")
     })
     client.on("disconnect", () => {
-        console.log(client + " disconnected")
+        console.log(client.name + " disconnected")
     })
     console.log("a user connected")
 });
