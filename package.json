@@ -8,7 +8,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bulma": "^0.8.2",
     "plyr": "^3.6.2",
     "html-webpack-plugin": "^4.3.0",
